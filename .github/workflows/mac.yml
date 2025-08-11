@@ -17,9 +17,12 @@ jobs:
 
     - name: Install MAUI workload
       run: dotnet workload install maui
+      
+    - name: Restore only MacCatalyst target
+      run: dotnet restore MauiApp1/MauiApp1.csproj -p:TargetFramework=net9.0-maccatalyst
 
     - name: Build macOS .app bundle
-      run: dotnet publish MauiApp1/MauiApp1.csproj -c Release -f net9.0-macos
+      run: dotnet publish MauiApp1/MauiApp1.csproj -c Release -f net9.0-macos -p:TargetFramework=net9.0-maccatalyst
 
     - name: Find .app bundle
       id: find_app
