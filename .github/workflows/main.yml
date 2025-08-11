@@ -34,4 +34,5 @@ jobs:
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4.6.2
       with:
-        path: .\**\AppPackages\**\*.*
+        name: windows-build
+        path: MauiApp1/bin/Release/net9.0-windows10.0.19041.0/win10-x64/AppPackages/MauiApp1*_Test/**
