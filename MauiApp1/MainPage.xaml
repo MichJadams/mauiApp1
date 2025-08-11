@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="Syncfusion.Maui.PdfViewer"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#f0f0f0"
+             x:Class="MauiApp1.MainPage">
+
+
+    <Grid
+        HorizontalOptions="Center" 
+        VerticalOptions="Center"
+        RowDefinitions="Auto, *"
+        ColumnDefinitions="Auto, *">
+        <VerticalStackLayout 
+            Grid.RowSpan="1"
+            Grid.Column="0" 
+            Padding="30"
+            Margin="10"
+            Spacing="8"
+            Grid.Row="0">
+            <Button x:Name="ResumeHubBtn" Text="Resumed Builder" Clicked="OnNavigate"></Button>
+            <Button x:Name="ApplicationsBtn" Text="Applications" Clicked="GoToApplications"></Button>
+            <Button x:Name="StatisticsBtn" Text="Statistics" Clicked="OnNavigate"></Button>
+            <Button x:Name="DataUploadBtn" Text="Data Upload" Clicked="OnNavigate"></Button>
+        </VerticalStackLayout>
+        <Border 
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Padding="30"
+            Grid.Row="0" 
+            Grid.Column="1">
+            <Label Text="I do not dream of labor"></Label>
+        </Border>
+    </Grid>
+
+</ContentPage>

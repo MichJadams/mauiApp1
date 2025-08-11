@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.Components.JobCard">
+    <Grid
+        x:Name="GridContainer"
+      Padding="25"
+      BackgroundColor="LightGray"
+      Grid.Column="0"
+      Grid.Row="6"
+      RowSpacing="5"
+      ColumnSpacing="3"
+      RowDefinitions="Auto, Auto, Auto, Auto"
+      ColumnDefinitions="Auto, *">
+        <Label 
+          Grid.Column="0"
+          Grid.Row="0"
+          Text="CompanyName"
+          />
+        <Entry 
+          Grid.Column="1"
+          Grid.Row="0"
+          x:Name="CompanyNameEntry" 
+          Placeholder="Enter Job title Here"
+          />
+        
+        <Label 
+          Grid.Column="0"
+          Grid.Row="1"
+          Text="JobTitle"
+          />
+            <Entry 
+          Grid.Column="1"
+          Grid.Row="1"
+          x:Name="JobTitleEntry" 
+          Placeholder="Enter Job title Here"
+          />
+
+            <Label 
+          Grid.Column="0"
+          Grid.Row="2"
+          Text="StartDate"
+          />
+            <DatePicker 
+          Grid.Column="1"
+          Grid.Row="2"
+          x:Name="StartDateEntry"
+          Format="MMMM dd, yyyy"
+          Date="{Binding SelectedStartDate}" />
+
+            <Label 
+          Grid.Column="0"
+          Grid.Row="3"
+          Text="EndDate"
+          />
+            <DatePicker 
+          Grid.Column="1"
+          Grid.Row="3"
+          x:Name="EndDateEntry"
+          Format="MMMM dd, yyyy"
+          Date="{Binding SelectedEndDate}" />
+        <Button 
+            Text="Save Job"
+            Clicked="OnSaveJob"
+            Grid.Column="0"
+            Grid.Row="4"
+            />
+
+    </Grid>
+</ContentView>
