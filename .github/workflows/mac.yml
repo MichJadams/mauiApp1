@@ -19,7 +19,7 @@ jobs:
       run: dotnet workload install maui macos
 
     - name: Build macOS .app bundle
-      run: dotnet publish MauiApp1/MauiApp1.csproj -c Release -f net9.0-macos
+      run: dotnet publish MauiApp1/MauiApp1.csproj -c Release -f net9.0
       
     - name: Find .app bundle
       id: find_app
