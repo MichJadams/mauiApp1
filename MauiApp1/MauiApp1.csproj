@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net9.0-windows10.0.19041.0;net9.0-maccatalyst</TargetFrameworks>
+		<!-- Define TargetFramework based on the OS that runs the build -->
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('Windows'))">net9.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('OSX'))">net9.0-maccatalyst</TargetFrameworks>
 
 		<OutputType>Exe</OutputType>
 		<RootNamespace>MauiApp1</RootNamespace>
@@ -21,16 +23,15 @@
 		<ApplicationVersion>1</ApplicationVersion>
 
 		<!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
-		<WindowsPackageType>MSIX</WindowsPackageType>
+		<WindowsPackageType Condition="$([MSBuild]::IsOSPlatform('Windows'))">MSIX</WindowsPackageType>
 
+		<!-- Supported OS platform versions -->
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
-	<PropertyGroup>
-		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net9.0-windows10.0.19041.0</TargetFrameworks>
+	<PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
 		<GenerateAppInstallerFile>False</GenerateAppInstallerFile>
 		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
 		<PackageCertificateThumbprint>EEEF3289C0078945B7F1B655F638A0452918B4AA</PackageCertificateThumbprint>
@@ -40,6 +41,8 @@
 		<GenerateTestArtifacts>True</GenerateTestArtifacts>
 		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
 	</PropertyGroup>
+
+	<!-- Keep your ItemGroups and other settings as they are -->
 
 	<ItemGroup>
 		<!-- App Icon -->
