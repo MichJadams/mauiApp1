@@ -1,0 +1,45 @@
+name: Build .NET MAUI macOS DMG
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 9.0.x
+
+    - name: Install MAUI workload
+      run: dotnet workload install maui
+
+    - name: Build macOS .app bundle
+      run: dotnet publish MauiApp1/MauiApp1.csproj -c Release -f net9.0-macos
+
+    - name: Find .app bundle
+      id: find_app
+      run: |
+        APP_PATH=$(find MauiApp1/bin/Release/net9.0-macos -type d -name "*.app" | head -n 1)
+        if [ -z "$APP_PATH" ]; then
+          echo "No .app bundle found!"
+          exit 1
+        fi
+        echo "appPath=$APP_PATH" >> $GITHUB_OUTPUT
+
+    - name: Create DMG
+      run: |
+        mkdir -p dist
+        DMG_PATH="dist/MauiApp1.dmg"
+        hdiutil create "$DMG_PATH" -volname "MauiApp1" -srcfolder "${{ steps.find_app.outputs.appPath }}" -ov -format UDZO
+        echo "DMG created at $DMG_PATH"
+
+    - name: Upload DMG Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: macos-dmg
+        path: dist/MauiApp1.dmg
