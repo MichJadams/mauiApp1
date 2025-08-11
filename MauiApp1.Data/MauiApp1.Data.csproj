@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	  <TargetFrameworks>net9.0-windows10.0.19041.0;net9.0-maccatalyst;net9.0-ios;net9.0-android</TargetFrameworks>
+	  <TargetFrameworks>net9.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<OutputType>Library</OutputType>
 	<UseMaui>false</UseMaui>
-	<PlatformTarget>ARM32</PlatformTarget>
+	<PlatformTarget>ARM64</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
